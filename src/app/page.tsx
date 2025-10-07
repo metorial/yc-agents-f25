@@ -49,6 +49,22 @@ let Logos = styled.div`
   }
 `;
 
+let HostLabel = styled.span`
+  color: #fff;
+  display: flex;
+  align-items: center;
+  height: 60px; /* match logo height */
+  line-height: 60px;
+  font-weight: 500;
+  font-size: 28px;
+
+  @media (max-width: 768px) {
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+  }
+`;
+
 export default () => {
   return (
     <>
@@ -56,57 +72,78 @@ export default () => {
         <HeaderTitle>YC Agent Jam '25</HeaderTitle>
 
         <HeaderSubtitle>
-          <span>Nov 1st & 2nd 2025</span>
+          <span>Nov 1st–2nd, 2025</span>
           <br />
-          <span>Y Combinator Office; San Francisco, California</span>
+          <span>Y Combinator Office — San Francisco, California</span>
         </HeaderSubtitle>
 
         <Logos>
-          <a href="https://www.ycombinator.com" target="_blank" rel="noreferrer">
-            <img src={ycLogo.src} alt="Y Combinator Logo" />
-          </a>
+          <HostLabel>Hosted by</HostLabel>
           <a href="https://www.metorial.com" target="_blank" rel="noreferrer">
             <img src={metorialLogo.src} alt="Metorial Logo" />
           </a>
+          <a href="https://www.ycombinator.com" target="_blank" rel="noreferrer">
+            <img src={ycLogo.src} alt="Y Combinator Logo" />
+          </a>
         </Logos>
 
-        <Box title="Hello world this is a test">
+        <Box title="About the Event">
           <p>
-            I'm baby viral Brooklyn mustache sus. Fixie ascot plaid listicle, fit actually
-            vinyl disrupt hella kale chips narwhal echo park gatekeep Brooklyn. Gochujang
-            hexagon tofu, narwhal selvage praxis taiyaki try-hard stumptown godard. Edison bulb
-            austin hoodie slow-carb XOXO flexitarian synth biodiesel cardigan JOMO. JOMO vinyl
-            mumblecore direct trade four dollar toast man braid ugh viral cornhole palo santo
-            keytar cronut church-key cupping mukbang.
+            <strong>Metorial (YC F25)</strong> is hosting a 24-hour overnight hackathon at the{' '}
+            <strong>Y Combinator Office</strong> in San Francisco - bringing together the most
+            talented developers, builders, and future founders to push the limits of what AI
+            agents can do.
           </p>
 
           <p>
-            Chicharrones gatekeep godard you probably haven't heard of them cray. Drinking
-            vinegar neutral milk hotel mumblecore lomo, semiotics kitsch pork belly taxidermy
-            fit pop-up tacos tbh cronut. 3 wolf moon polaroid la croix sriracha taxidermy.
-            Narwhal kale chips pickled migas roof party you probably haven't heard of them
-            thundercats tousled poutine kitsch shoreditch kinfolk. Tilde kale chips twee,
-            cold-pressed keytar deep v fanny pack paleo fingerstache.
+            We’re inviting the most <em>cracked</em> devs, top students, and industry engineers
+            ready to start their own companies. Come build something insane, meet other
+            founders, and compete for a chance to win a{' '}
+            <strong>guaranteed YC interview</strong>.
+          </p>
+
+          <p>
+            <strong>Andrew Miklas</strong>, YC Partner and co-founder of PagerDuty, will join
+            us as a judge and at the closing ceremony to announce the winners and share
+            insights from YC’s founder community.
           </p>
         </Box>
 
-        <Box title="Organized by Metorial">
+        <Box title="About Metorial">
           <p>
-            I'm baby viral Brooklyn mustache sus. Fixie ascot plaid listicle, fit actually
-            vinyl disrupt hella kale chips narwhal echo park gatekeep Brooklyn. Gochujang
-            hexagon tofu, narwhal selvage praxis taiyaki try-hard stumptown godard. Edison bulb
-            austin hoodie slow-carb XOXO flexitarian synth biodiesel cardigan JOMO. JOMO vinyl
-            mumblecore direct trade four dollar toast man braid ugh viral cornhole palo santo
-            keytar cronut church-key cupping mukbang.
+            Metorial (YC F25) is the Vercel for MCP. We let developers connect their LLMs to
+            external tools and data via MCP. You can deploy 600+ MCP servers in just three
+            clicks and connect your LLMs to them in a single SDK call.
           </p>
+          <br />
+          <p>
+            With Metorial, we solve the three biggest issues with deploying MCP at scale:
+            speed, security, and scaling. Servers deploy in seconds without any infrastructure
+            configuration. We have strong per-user isolation combined with OAuth. And our
+            serverless infrastructure is the <strong>only one</strong> that supports
+            hibernation and sub-second cold starts.
+          </p>
+          <br />
+          <p>
+            Learn more at{' '}
+            <a href="https://www.metorial.com" target="_blank" rel="noreferrer">
+              metorial.com
+            </a>
+            .
+          </p>
+        </Box>
+
+        <Box title="Sponsors & Partners">
+          <p>
+            We’re assembling a lineup of world-class sponsors to support builders and founders
+            throughout the event. Sponsors will appear here as they’re confirmed — stay tuned
+            for updates.
+          </p>
+          <br />
 
           <p>
-            Chicharrones gatekeep godard you probably haven't heard of them cray. Drinking
-            vinegar neutral milk hotel mumblecore lomo, semiotics kitsch pork belly taxidermy
-            fit pop-up tacos tbh cronut. 3 wolf moon polaroid la croix sriracha taxidermy.
-            Narwhal kale chips pickled migas roof party you probably haven't heard of them
-            thundercats tousled poutine kitsch shoreditch kinfolk. Tilde kale chips twee,
-            cold-pressed keytar deep v fanny pack paleo fingerstache.
+            Interested in sponsoring? Reach out at{' '}
+            <a href="mailto:founders@metorial.com">founders@metorial.com</a>.
           </p>
         </Box>
 
