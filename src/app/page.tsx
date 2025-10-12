@@ -67,26 +67,25 @@ let HostLabel = styled.span`
 
 let ApplyButton = styled.a`
   display: inline-block;
-  background: linear-gradient(135deg, #00c900 0%, #5c5cdb 50%, #cc71e1 100%);
-  color: white;
+  background: white;
+  color: black;
   padding: 20px 40px;
-  border-radius: 12px;
+  border-radius: 50px;
   font-size: 24px;
   font-weight: 600;
   text-decoration: none;
-  margin: 40px 0;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 32px rgba(0, 201, 0, 0.3);
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.3);
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 48px rgba(0, 201, 0, 0.4);
-    color: white;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 48px rgba(255, 255, 255, 0.5);
+    color: black;
     text-decoration: none;
   }
 
   &:active {
-    transform: translateY(0px);
+    transform: translateY(0px) scale(0.98);
   }
 
   @media (max-width: 768px) {
@@ -100,8 +99,8 @@ let FloatingApplyButton = styled.a`
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background: linear-gradient(135deg, #00c900 0%, #5c5cdb 50%, #cc71e1 100%);
-  color: white;
+  background: white;
+  color: black;
   padding: 16px 24px;
   border-radius: 50px;
   font-size: 16px;
@@ -110,12 +109,16 @@ let FloatingApplyButton = styled.a`
   transition: all 0.3s ease;
   box-shadow: 0 8px 32px rgba(0, 201, 0, 0.4);
   z-index: 1000;
-  
+
   &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 12px 48px rgba(0, 201, 0, 0.5);
-    color: white;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 12px 48px rgba(0, 201, 0, 0.6);
+    color: black;
     text-decoration: none;
+  }
+
+  &:active {
+    transform: translateY(0px) scale(0.95);
   }
 
   @media (max-width: 768px) {
@@ -124,6 +127,19 @@ let FloatingApplyButton = styled.a`
     padding: 14px 20px;
     font-size: 14px;
   }
+`;
+
+let Apply = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 50px 0px 80px 0px;
+`;
+
+let ApplyExtra = styled.p`
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.8;
 `;
 
 export default () => {
@@ -138,12 +154,14 @@ export default () => {
           <span>Y Combinator Office — San Francisco, California</span>
         </HeaderSubtitle>
 
-        <div style={{ textAlign: 'center', margin: '60px 0' }}>
-          <ApplyButton href="/apply">Don't Miss Out - Apply Now</ApplyButton>
-          <p style={{ color: '#ccc', fontSize: '16px', marginTop: '12px' }}>
-            Limited spots available • Guaranteed YC interview for winners
-          </p>
-        </div>
+        <Apply>
+          <div>
+            <ApplyButton href="/apply">Don't Miss Out - Apply Now</ApplyButton>
+          </div>
+          <ApplyExtra>
+            Limited spots available • <u>Guaranteed YC interview</u> for winner
+          </ApplyExtra>
+        </Apply>
 
         <Logos>
           <HostLabel>Hosted by</HostLabel>
@@ -221,7 +239,7 @@ export default () => {
 
         <Footer />
       </Page>
-      
+
       <FloatingApplyButton href="/apply">🚀 Apply</FloatingApplyButton>
     </>
   );
