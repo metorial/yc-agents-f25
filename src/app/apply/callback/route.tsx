@@ -3,9 +3,9 @@ import { Resend } from 'resend';
 
 export const runtime = 'edge';
 
-let resend = new Resend(process.env.RESEND_API_KEY!);
-
 export let GET = async (req: NextRequest) => {
+  let resend = new Resend(process.env.RESEND_API_KEY!);
+
   let url = new URL(req.url);
   let code = url.searchParams.get('code');
   if (!code) {
