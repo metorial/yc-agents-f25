@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { JetBrains_Mono, Lexend_Deca } from 'next/font/google';
-import { Nav } from '../components/nav';
 import './globals.css';
 import { StyledComponentsRegistry } from './registry';
 
@@ -28,7 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${lexend.variable} ${jetbrains.variable}`}>
         <StyledComponentsRegistry>
-          <Nav />
+          {/* <Nav /> */}
 
           {children}
         </StyledComponentsRegistry>

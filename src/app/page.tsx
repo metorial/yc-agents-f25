@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'motion/react';
 import styled from 'styled-components';
 import metorialLogo from '../assets/metorial-full.svg';
 import ycLogo from '../assets/yc-full.svg';
@@ -9,7 +10,7 @@ import { Page } from '../components/page';
 
 export const dynamic = 'force-static';
 
-let HeaderTitle = styled.h1`
+let HeaderTitle = styled(motion.h1)`
   font-size: 12em;
   font-weight: 500;
 
@@ -19,14 +20,14 @@ let HeaderTitle = styled.h1`
   }
 `;
 
-let HeaderSubtitle = styled.h2`
+let HeaderSubtitle = styled(motion.h2)`
   font-size: 1.4em;
   font-weight: 500;
   margin-top: 20px;
   line-height: 1.8em;
 `;
 
-let Logos = styled.div`
+let Logos = styled(motion.div)`
   display: flex;
   flex-wrap: wrap;
   gap: 50px;
@@ -95,10 +96,16 @@ let ApplyButton = styled.a`
   }
 `;
 
-let FloatingApplyButton = styled.a`
+let FloatingButtons = styled.nav`
   position: fixed;
   bottom: 30px;
   right: 30px;
+  display: flex;
+  gap: 15px;
+  z-index: 1000;
+`;
+
+let FloatingButton = styled(motion.a)`
   background: white;
   color: black;
   padding: 16px 24px;
@@ -107,18 +114,19 @@ let FloatingApplyButton = styled.a`
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 32px rgba(0, 201, 0, 0.4);
-  z-index: 1000;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+  z-index: 1005;
 
   &:hover {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 12px 48px rgba(0, 201, 0, 0.6);
+    transform: scale(1.05);
     color: black;
     text-decoration: none;
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.3);
   }
 
   &:active {
-    transform: translateY(0px) scale(0.95);
+    transform: scale(0.95);
+    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
   }
 
   @media (max-width: 768px) {
@@ -129,7 +137,7 @@ let FloatingApplyButton = styled.a`
   }
 `;
 
-let Apply = styled.div`
+let Apply = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -146,15 +154,29 @@ export default () => {
   return (
     <>
       <Page>
-        <HeaderTitle>YC Agent Jam '25</HeaderTitle>
+        <HeaderTitle
+          initial={{ opacity: 0, y: 30, filter: 'blur(15px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 1.3, ease: 'easeOut', delay: 0.5 }}
+        >
+          YC Agent Jam '25
+        </HeaderTitle>
 
-        <HeaderSubtitle>
+        <HeaderSubtitle
+          initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 1 }}
+        >
           <span>Nov 1st–2nd, 2025</span>
           <br />
           <span>Y Combinator Office — San Francisco, California</span>
         </HeaderSubtitle>
 
-        <Apply>
+        <Apply
+          initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 1.2 }}
+        >
           <div>
             <ApplyButton href="/apply">Don't Miss Out - Apply Now</ApplyButton>
           </div>
@@ -163,7 +185,11 @@ export default () => {
           </ApplyExtra>
         </Apply>
 
-        <Logos>
+        <Logos
+          initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 1.4 }}
+        >
           <HostLabel>Hosted by</HostLabel>
           <a href="https://www.metorial.com" target="_blank" rel="noreferrer">
             <img src={metorialLogo.src} alt="Metorial Logo" />
@@ -173,7 +199,7 @@ export default () => {
           </a>
         </Logos>
 
-        <Box title="About the Event">
+        <Box title="About the Event" delay={1.6}>
           <p>
             <strong>Metorial (YC F25)</strong> is hosting a 24-hour overnight hackathon at the{' '}
             <strong>Y Combinator Office</strong> in San Francisco - bringing together the most
@@ -195,7 +221,7 @@ export default () => {
           </p>
         </Box>
 
-        <Box title="About Metorial">
+        <Box title="About Metorial" delay={1.8}>
           <p>
             Metorial (YC F25) is the Vercel for MCP. We let developers connect their LLMs to
             external tools and data via MCP. You can deploy 600+ MCP servers in just three
@@ -219,7 +245,7 @@ export default () => {
           </p>
         </Box>
 
-        <Box title="Sponsors & Partners">
+        <Box title="Sponsors & Partners" delay={2.0}>
           <p>
             We're assembling a lineup of world-class sponsors to support builders and founders
             throughout the event. Sponsors will appear here as they're confirmed — stay tuned
@@ -233,14 +259,31 @@ export default () => {
           </p>
         </Box>
 
-        <div style={{ textAlign: 'center', margin: '80px 0 40px 0' }}>
+        <div style={{ marginBottom: '80px' }}>
           <ApplyButton href="/apply">Ready to Join? Apply Now</ApplyButton>
         </div>
 
         <Footer />
-      </Page>
 
-      <FloatingApplyButton href="/apply">🚀 Apply</FloatingApplyButton>
+        <FloatingButtons>
+          <FloatingButton
+            href="/discord"
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2, delay: 1.2 }}
+          >
+            Join our Discord
+          </FloatingButton>
+          <FloatingButton
+            href="/apply"
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2, delay: 1 }}
+          >
+            🚀 Apply
+          </FloatingButton>
+        </FloatingButtons>
+      </Page>
     </>
   );
 };

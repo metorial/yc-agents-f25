@@ -1,6 +1,7 @@
+import { motion } from 'motion/react';
 import styled from 'styled-components';
 
-let BoxWrapper = styled.div`
+let BoxWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   margin-bottom: 100px;
@@ -81,13 +82,19 @@ let BoxContent = styled.div`
 
 export let Box = ({
   title,
-  children
+  children,
+  delay = 0
 }: {
   title: React.ReactNode;
   children: React.ReactNode;
+  delay?: number;
 }) => {
   return (
-    <BoxWrapper>
+    <BoxWrapper
+      initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      transition={{ duration: 0.8, ease: 'easeOut', delay }}
+    >
       <BoxTop>
         <BoxTitle>{title}</BoxTitle>
       </BoxTop>
