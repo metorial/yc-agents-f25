@@ -155,7 +155,7 @@ export default function ThanksPage() {
               >
                 <Box title="What's Next?">
                   <p>
-                    You'll receive an email confirmation shortly. We'll review your application
+                    We'll review your application
                     and get back to you soon about your spot at the hackathon.
                   </p>
                   <br />
