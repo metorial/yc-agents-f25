@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
 
 export const runtime = 'edge';
+
+let resend = new Resend(process.env.RESEND_API_KEY!);
 
 export let GET = async (req: NextRequest) => {
   let url = new URL(req.url);
@@ -46,6 +49,18 @@ export let GET = async (req: NextRequest) => {
   }
 
   let userData = await userRes.json();
+
+  try {
+    await resend.contacts.create({
+      email: userData.email!,
+      firstName: userData.first_name,
+      lastName: userData.last_name,
+      unsubscribed: false,
+      audienceId: process.env.RESEND_AUDIENCE_ID!
+    });
+  } catch (e) {
+    console.error('Failed to add user to contacts', e);
+  }
 
   // return NextResponse.json({
   //   user: userData

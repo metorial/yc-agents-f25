@@ -9,6 +9,16 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   compiler: {
     styledComponents: true
+  },
+
+  redirects: async () => {
+    return [
+      {
+        source: '/discord',
+        destination: 'https://discord.gg/66f7CP4uMQ',
+        permanent: false
+      }
+    ];
   }
   // output: 'export',
 };
