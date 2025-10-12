@@ -51,7 +51,7 @@ export let GET = async (req: NextRequest) => {
   //   user: userData
   // });
 
-  let formUrl = new URL(`https://tally.so/r/mDgjzZ`);
+  let formUrl = new URL(`https://forms.metorial.com/yc-agents-25`);
   formUrl.searchParams.set('firstName', userData.first_name || '');
   formUrl.searchParams.set('lastName', userData.last_name || '');
   formUrl.searchParams.set('email', userData.email || '');
