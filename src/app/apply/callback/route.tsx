@@ -47,7 +47,15 @@ export let GET = async (req: NextRequest) => {
 
   let userData = await userRes.json();
 
-  return NextResponse.json({
-    user: userData
-  });
+  // return NextResponse.json({
+  //   user: userData
+  // });
+
+  let formUrl = new URL(`https://tally.so/r/mDgjzZ`);
+  formUrl.searchParams.set('firstName', userData.first_name || '');
+  formUrl.searchParams.set('lastName', userData.last_name || '');
+  formUrl.searchParams.set('email', userData.email || '');
+  formUrl.searchParams.set('metorialUserId', userData.id || '');
+
+  return NextResponse.redirect(formUrl.toString());
 };
