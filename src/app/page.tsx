@@ -65,6 +65,67 @@ let HostLabel = styled.span`
   }
 `;
 
+let ApplyButton = styled.a`
+  display: inline-block;
+  background: linear-gradient(135deg, #00c900 0%, #5c5cdb 50%, #cc71e1 100%);
+  color: white;
+  padding: 20px 40px;
+  border-radius: 12px;
+  font-size: 24px;
+  font-weight: 600;
+  text-decoration: none;
+  margin: 40px 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 201, 0, 0.3);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 48px rgba(0, 201, 0, 0.4);
+    color: white;
+    text-decoration: none;
+  }
+
+  &:active {
+    transform: translateY(0px);
+  }
+
+  @media (max-width: 768px) {
+    padding: 16px 32px;
+    font-size: 20px;
+    margin: 30px 0;
+  }
+`;
+
+let FloatingApplyButton = styled.a`
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: linear-gradient(135deg, #00c900 0%, #5c5cdb 50%, #cc71e1 100%);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 201, 0, 0.4);
+  z-index: 1000;
+  
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 48px rgba(0, 201, 0, 0.5);
+    color: white;
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    bottom: 20px;
+    right: 20px;
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+`;
+
 export default () => {
   return (
     <>
@@ -76,6 +137,13 @@ export default () => {
           <br />
           <span>Y Combinator Office — San Francisco, California</span>
         </HeaderSubtitle>
+
+        <div style={{ textAlign: 'center', margin: '60px 0' }}>
+          <ApplyButton href="/apply">Don't Miss Out - Apply Now</ApplyButton>
+          <p style={{ color: '#ccc', fontSize: '16px', marginTop: '12px' }}>
+            Limited spots available • Guaranteed YC interview for winners
+          </p>
+        </div>
 
         <Logos>
           <HostLabel>Hosted by</HostLabel>
@@ -96,7 +164,7 @@ export default () => {
           </p>
 
           <p>
-            We’re inviting the most <em>cracked</em> devs, top students, and industry engineers
+            We're inviting the most <em>cracked</em> devs, top students, and industry engineers
             ready to start their own companies. Come build something insane, meet other
             founders, and compete for a chance to win a{' '}
             <strong>guaranteed YC interview</strong>.
@@ -105,7 +173,7 @@ export default () => {
           <p>
             <strong>Andrew Miklas</strong>, YC Partner and co-founder of PagerDuty, will join
             us as a judge and at the closing ceremony to announce the winners and share
-            insights from YC’s founder community.
+            insights from YC's founder community.
           </p>
         </Box>
 
@@ -135,8 +203,8 @@ export default () => {
 
         <Box title="Sponsors & Partners">
           <p>
-            We’re assembling a lineup of world-class sponsors to support builders and founders
-            throughout the event. Sponsors will appear here as they’re confirmed — stay tuned
+            We're assembling a lineup of world-class sponsors to support builders and founders
+            throughout the event. Sponsors will appear here as they're confirmed — stay tuned
             for updates.
           </p>
           <br />
@@ -147,8 +215,14 @@ export default () => {
           </p>
         </Box>
 
+        <div style={{ textAlign: 'center', margin: '80px 0 40px 0' }}>
+          <ApplyButton href="/apply">Ready to Join? Apply Now</ApplyButton>
+        </div>
+
         <Footer />
       </Page>
+      
+      <FloatingApplyButton href="/apply">🚀 Apply</FloatingApplyButton>
     </>
   );
 };
