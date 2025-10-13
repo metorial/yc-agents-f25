@@ -161,7 +161,7 @@ export default function ThanksPage() {
                   <br />
                   <p>
                     <strong>Stay in the loop:</strong> Join our Discord and follow us on
-                    Twitter for event updates, networking opportunities, and important
+                    X for event updates, networking opportunities, and important
                     announcements leading up to the hackathon.
                   </p>
                 </Box>
@@ -204,7 +204,7 @@ export default function ThanksPage() {
           Join Discord
         </FloatingButton>
         <FloatingButton
-          href="https://twitter.com/MetorialAI"
+          href="https://x.com/MetorialAI"
           target="_blank"
           rel="noopener"
           initial={{ opacity: 0, y: 60 }}
