@@ -4,6 +4,16 @@ import { motion } from 'motion/react';
 import styled from 'styled-components';
 import metorialLogo from '../assets/metorial-full.svg';
 import ycLogo from '../assets/yc-full.svg';
+import vvLogo from '../assets/vv.png';
+import anthropicLogo from '../assets/sponsors/anthropic.png';
+import captainLogo from '../assets/sponsors/captain.png';
+import naturalLogo from '../assets/sponsors/natural.png';
+import nivaraLogo from '../assets/sponsors/nivara.png';
+import openaiLogo from '../assets/sponsors/openai.png';
+import unsiloedLogo from '../assets/sponsors/unsiloed.png';
+import vercelLogo from '../assets/sponsors/vercel.png';
+import workloopaiLogo from '../assets/sponsors/workloopai.png';
+import morphllmLogo from '../assets/sponsors/morphllm.svg';
 import { Box } from '../components/box';
 import { Footer } from '../components/footer';
 import { Page } from '../components/page';
@@ -39,6 +49,22 @@ let Logos = styled(motion.div)`
     height: 60px;
   }
 
+  .openai-logo {
+    height: 70px;
+  }
+
+  .vercel-logo {
+    height: 45px;
+  }
+
+  .morphllm-logo {
+    filter: brightness(0) saturate(100%) invert(100%);
+  }
+
+  .vv-logo {
+    height: 40px;
+  }
+
   @media (max-width: 768px) {
     gap: 15px;
     margin-top: 30px;
@@ -46,6 +72,22 @@ let Logos = styled(motion.div)`
 
     img {
       height: 40px;
+    }
+
+    .openai-logo {
+      height: 50px;
+    }
+
+    .vercel-logo {
+      height: 30px;
+    }
+
+    .morphllm-logo {
+      filter: brightness(0) saturate(100%) invert(100%);
+    }
+
+    .vv-logo {
+      height: 30px;
     }
   }
 `;
@@ -197,9 +239,29 @@ export default () => {
           <a href="https://www.ycombinator.com" target="_blank" rel="noreferrer">
             <img src={ycLogo.src} alt="Y Combinator Logo" />
           </a>
+          <a href="https://www.linkedin.com/company/violetventures/" target="_blank" rel="noreferrer">
+            <img src={vvLogo.src} alt="Violet Ventures Logo" className="vv-logo" />
+          </a>
         </Logos>
 
-        <Box title="About the Event" delay={1.6}>
+        <Logos
+          initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 1.6 }}
+        >
+          <HostLabel>Supported by</HostLabel>
+          <img src={naturalLogo.src} alt="Natural" />
+          <img src={openaiLogo.src} alt="OpenAI" className="openai-logo" />
+          <img src={vercelLogo.src} alt="Vercel" className="vercel-logo" />
+          <img src={anthropicLogo.src} alt="Anthropic" />
+          <img src={captainLogo.src} alt="Captain" />
+          <img src={morphllmLogo.src} alt="MorphLLM" className="morphllm-logo" />
+          <img src={workloopaiLogo.src} alt="Workloop AI" />
+          <img src={unsiloedLogo.src} alt="Unsiloed AI" />
+          <img src={nivaraLogo.src} alt="Nivara" />
+        </Logos>
+
+        <Box title="About the Event" delay={1.8}>
           <p>
             <strong>Metorial (YC F25)</strong> is hosting a 24-hour overnight hackathon at the{' '}
             <strong>Y Combinator Office</strong> in San Francisco - bringing together the most
@@ -221,7 +283,7 @@ export default () => {
           </p>
         </Box>
 
-        <Box title="About Metorial" delay={1.8}>
+        <Box title="About Metorial" delay={2.0}>
           <p>
             Metorial (YC F25) is the Vercel for MCP. We let developers connect their LLMs to
             external tools and data via MCP. You can deploy 600+ MCP servers in just three
@@ -245,7 +307,7 @@ export default () => {
           </p>
         </Box>
 
-        <Box title="Sponsors & Partners" delay={2.0}>
+        <Box title="Sponsors & Partners" delay={2.2}>
           <p>
             We're assembling a lineup of world-class sponsors to support builders and founders
             throughout the event. Sponsors will appear here as they're confirmed — stay tuned
