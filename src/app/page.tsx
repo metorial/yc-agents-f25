@@ -14,8 +14,8 @@ import unsiloedLogo from '../assets/sponsors/unsiloed.png';
 import vercelLogo from '../assets/sponsors/vercel.png';
 import workloopaiLogo from '../assets/sponsors/workloopai.png';
 import morphllmLogo from '../assets/sponsors/morphllm.svg';
-import audrionLogo from '../assets/sponsors/audrion.png';
-import covalLogo from '../assets/sponsors/coval.jpeg';
+import audrionLogo from '../assets/sponsors/audrion.svg';
+import covalLogo from '../assets/sponsors/coval.png';
 import mantleLogo from '../assets/sponsors/mantle.png';
 import puddleLogo from '../assets/sponsors/puddle.png';
 import vectusLogo from '../assets/sponsors/vectus.png';
@@ -70,6 +70,28 @@ let Logos = styled(motion.div)`
     height: 40px;
   }
 
+  .audrion-logo {
+    height: 40px;
+  }
+
+  .coval-logo {
+    height: 55px;
+  }
+
+  .mantle-logo {
+    height: 55px;
+  }
+
+  .puddle-logo {
+    width: 200px;
+    height: auto;
+  }
+
+  .vectus-logo {
+    width: 250px;
+    height: auto;
+  }
+
   @media (max-width: 768px) {
     gap: 15px;
     margin-top: 30px;
@@ -93,6 +115,28 @@ let Logos = styled(motion.div)`
 
     .vv-logo {
       height: 30px;
+    }
+
+    .audrion-logo {
+      height: 28px;
+    }
+
+    .coval-logo {
+      height: 38px;
+    }
+
+    .mantle-logo {
+      height: 38px;
+    }
+
+    .puddle-logo {
+      width: 150px;
+      height: auto;
+    }
+
+    .vectus-logo {
+      width: 150px;
+      height: auto;
     }
   }
 `;
@@ -264,11 +308,10 @@ export default () => {
           <img src={workloopaiLogo.src} alt="Workloop AI" />
           <img src={unsiloedLogo.src} alt="Unsiloed AI" />
           <img src={nivaraLogo.src} alt="Nivara" />
-          <img src={audrionLogo.src} alt="Audrion" />
-          <img src={covalLogo.src} alt="Coval" />
-          <img src={mantleLogo.src} alt="Mantle" />
-          <img src={puddleLogo.src} alt="Puddle" />
-          <img src={vectusLogo.src} alt="Vectus" />
+          <img src={audrionLogo.src} alt="Audrion" className="audrion-logo" />
+          <img src={covalLogo.src} alt="Coval" className="coval-logo" />
+          <img src={puddleLogo.src} alt="Puddle" className="puddle-logo" />
+          <img src={mantleLogo.src} alt="Mantle" className="mantle-logo" />
         </Logos>
 
         <Box title="About the Event" delay={1.8}>
