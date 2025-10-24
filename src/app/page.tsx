@@ -362,9 +362,9 @@ export default () => {
 
         <Box title="Sponsors & Partners" delay={2.2}>
           <p>
-            We're assembling a lineup of world-class sponsors to support builders and founders
-            throughout the event. Sponsors will appear here as they're confirmed — stay tuned
-            for updates.
+            We've assembled an incredible lineup of world-class sponsors to support builders and founders
+            throughout the event. Our sponsors include Natural, OpenAI, Vercel, Anthropic, Captain, MorphLLM, 
+            Workloop AI, Unsiloed AI, Nivara, Audrion, Coval, Mantle, Puddle, and Vectus.
           </p>
           <br />
 
