@@ -14,6 +14,11 @@ import unsiloedLogo from '../assets/sponsors/unsiloed.png';
 import vercelLogo from '../assets/sponsors/vercel.png';
 import workloopaiLogo from '../assets/sponsors/workloopai.png';
 import morphllmLogo from '../assets/sponsors/morphllm.svg';
+import audrionLogo from '../assets/sponsors/audrion.png';
+import covalLogo from '../assets/sponsors/coval.jpeg';
+import mantleLogo from '../assets/sponsors/mantle.png';
+import puddleLogo from '../assets/sponsors/puddle.png';
+import vectusLogo from '../assets/sponsors/vectus.png';
 import { Box } from '../components/box';
 import { Footer } from '../components/footer';
 import { Page } from '../components/page';
@@ -259,6 +264,11 @@ export default () => {
           <img src={workloopaiLogo.src} alt="Workloop AI" />
           <img src={unsiloedLogo.src} alt="Unsiloed AI" />
           <img src={nivaraLogo.src} alt="Nivara" />
+          <img src={audrionLogo.src} alt="Audrion" />
+          <img src={covalLogo.src} alt="Coval" />
+          <img src={mantleLogo.src} alt="Mantle" />
+          <img src={puddleLogo.src} alt="Puddle" />
+          <img src={vectusLogo.src} alt="Vectus" />
         </Logos>
 
         <Box title="About the Event" delay={1.8}>
