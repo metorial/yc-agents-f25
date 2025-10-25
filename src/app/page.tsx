@@ -16,7 +16,6 @@ import workloopaiLogo from '../assets/sponsors/workloopai.png';
 import morphllmLogo from '../assets/sponsors/morphllm.svg';
 import audrionLogo from '../assets/sponsors/audrion.svg';
 import covalLogo from '../assets/sponsors/coval.png';
-import mantleLogo from '../assets/sponsors/mantle.png';
 import puddleLogo from '../assets/sponsors/puddle.png';
 import vectusLogo from '../assets/sponsors/vectus.png';
 import { Box } from '../components/box';
@@ -79,7 +78,7 @@ let Logos = styled(motion.div)`
   }
 
   .mantle-logo {
-    height: 55px;
+    height: 120px;
   }
 
   .puddle-logo {
@@ -126,7 +125,7 @@ let Logos = styled(motion.div)`
     }
 
     .mantle-logo {
-      height: 38px;
+      height: 120px;
     }
 
     .puddle-logo {
@@ -288,7 +287,11 @@ export default () => {
           <a href="https://www.ycombinator.com" target="_blank" rel="noreferrer">
             <img src={ycLogo.src} alt="Y Combinator Logo" />
           </a>
-          <a href="https://www.linkedin.com/company/violetventures/" target="_blank" rel="noreferrer">
+          <a
+            href="https://www.linkedin.com/company/violetventures/"
+            target="_blank"
+            rel="noreferrer"
+          >
             <img src={vvLogo.src} alt="Violet Ventures Logo" className="vv-logo" />
           </a>
         </Logos>
@@ -311,7 +314,8 @@ export default () => {
           <img src={audrionLogo.src} alt="Audrion" className="audrion-logo" />
           <img src={covalLogo.src} alt="Coval" className="coval-logo" />
           <img src={puddleLogo.src} alt="Puddle" className="puddle-logo" />
-          <img src={mantleLogo.src} alt="Mantle" className="mantle-logo" />
+          <img src="/assets/sponsors/mantle.png" alt="Mantle" className="mantle-logo" />
+          <img src={vectusLogo.src} alt="Vectus" className="vectus-logo" />
         </Logos>
 
         <Box title="About the Event" delay={1.8}>
@@ -362,9 +366,10 @@ export default () => {
 
         <Box title="Sponsors & Partners" delay={2.2}>
           <p>
-            We've assembled an incredible lineup of world-class sponsors to support builders and founders
-            throughout the event. Our sponsors include Natural, OpenAI, Vercel, Anthropic, Captain, MorphLLM, 
-            Workloop AI, Unsiloed AI, Nivara, Audrion, Coval, Mantle, Puddle, and Vectus.
+            We've assembled an incredible lineup of world-class sponsors to support builders
+            and founders throughout the event. Our sponsors include Natural, OpenAI, Vercel,
+            Anthropic, Captain, MorphLLM, Workloop AI, Unsiloed AI, Nivara, Audrion, Coval,
+            Mantle, Puddle, and Vectus.
           </p>
           <br />
 
