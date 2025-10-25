@@ -50,15 +50,15 @@ let Logos = styled(motion.div)`
   margin-bottom: 100px;
 
   img {
-    height: 60px;
+    height: 54px;
   }
 
   .openai-logo {
-    height: 70px;
+    height: 63px;
   }
 
   .vercel-logo {
-    height: 45px;
+    height: 41px;
   }
 
   .morphllm-logo {
@@ -66,15 +66,15 @@ let Logos = styled(motion.div)`
   }
 
   .vv-logo {
-    height: 40px;
+    height: 36px;
   }
 
   .audrion-logo {
-    height: 40px;
+    height: 36px;
   }
 
   .coval-logo {
-    height: 55px;
+    height: 50px;
   }
 
   .mantle-logo {
@@ -82,12 +82,12 @@ let Logos = styled(motion.div)`
   }
 
   .puddle-logo {
-    width: 200px;
+    width: 180px;
     height: auto;
   }
 
   .vectus-logo {
-    width: 250px;
+    width: 225px;
     height: auto;
   }
 
@@ -97,15 +97,15 @@ let Logos = styled(motion.div)`
     margin-bottom: 50px;
 
     img {
-      height: 40px;
+      height: 36px;
     }
 
     .openai-logo {
-      height: 50px;
+      height: 45px;
     }
 
     .vercel-logo {
-      height: 30px;
+      height: 27px;
     }
 
     .morphllm-logo {
@@ -113,15 +113,15 @@ let Logos = styled(motion.div)`
     }
 
     .vv-logo {
-      height: 30px;
+      height: 27px;
     }
 
     .audrion-logo {
-      height: 28px;
+      height: 25px;
     }
 
     .coval-logo {
-      height: 38px;
+      height: 34px;
     }
 
     .mantle-logo {
@@ -129,12 +129,12 @@ let Logos = styled(motion.div)`
     }
 
     .puddle-logo {
-      width: 150px;
+      width: 135px;
       height: auto;
     }
 
     .vectus-logo {
-      width: 150px;
+      width: 135px;
       height: auto;
     }
   }
