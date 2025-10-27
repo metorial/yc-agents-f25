@@ -3,21 +3,21 @@
 import { motion } from 'motion/react';
 import styled from 'styled-components';
 import metorialLogo from '../assets/metorial-full.svg';
-import ycLogo from '../assets/yc-full.svg';
-import vvLogo from '../assets/vv.png';
 import anthropicLogo from '../assets/sponsors/anthropic.png';
+import audrionLogo from '../assets/sponsors/audrion.svg';
 import captainLogo from '../assets/sponsors/captain.png';
+import covalLogo from '../assets/sponsors/coval.png';
+import morphllmLogo from '../assets/sponsors/morphllm.svg';
 import naturalLogo from '../assets/sponsors/natural.png';
 import nivaraLogo from '../assets/sponsors/nivara.png';
 import openaiLogo from '../assets/sponsors/openai.png';
+import puddleLogo from '../assets/sponsors/puddle.png';
 import unsiloedLogo from '../assets/sponsors/unsiloed.png';
+import vectusLogo from '../assets/sponsors/vectus.png';
 import vercelLogo from '../assets/sponsors/vercel.png';
 import workloopaiLogo from '../assets/sponsors/workloopai.png';
-import morphllmLogo from '../assets/sponsors/morphllm.svg';
-import audrionLogo from '../assets/sponsors/audrion.svg';
-import covalLogo from '../assets/sponsors/coval.png';
-import puddleLogo from '../assets/sponsors/puddle.png';
-import vectusLogo from '../assets/sponsors/vectus.png';
+import vvLogo from '../assets/vv.png';
+import ycLogo from '../assets/yc-full.svg';
 import { Box } from '../components/box';
 import { Footer } from '../components/footer';
 import { Page } from '../components/page';
@@ -320,7 +320,10 @@ export default () => {
 
         <Box title="About the Event" delay={1.8}>
           <p>
-            <strong>Metorial (YC F25)</strong> is hosting a 24-hour overnight hackathon at the{' '}
+            <a href="https://metorial.com" target="_blank" rel="noreferrer">
+              <strong>Metorial (YC F25)</strong>
+            </a>{' '}
+            is hosting a 24-hour overnight hackathon at the{' '}
             <strong>Y Combinator Office</strong> in San Francisco - bringing together the most
             talented developers, builders, and future founders to push the limits of what AI
             agents can do.

@@ -14,8 +14,22 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: `YC Agent Jam '25`,
-  description: '24 hours. 200 devs. At the YC office in SF. Build something amazing.'
+  title: `YC Agent Jam '25 by Metorial`,
+  description: '24 hours. 200 devs. At the YC office in SF. Build something amazing.',
+  openGraph: {
+    title: `YC Agent Jam '25 by Metorial`,
+    description: '24 hours. 200 devs. At the YC office in SF. Build something amazing.',
+    siteName: 'YC Agent Jam 25',
+    locale: 'en_US',
+    type: 'website'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `YC Agent Jam '25 by Metorial`,
+    description: '24 hours. 200 devs. At the YC office in SF. Build something amazing.',
+    site: '@metorialAi',
+    creator: '@metorialAi'
+  }
 };
 
 export default function RootLayout({
