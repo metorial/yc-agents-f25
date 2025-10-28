@@ -141,9 +141,9 @@ let useBlink = (interval: number) => {
 let sponsorDuration = 4;
 
 let scenes = [
-  { name: 'timer', duration: 1000 * 5 },
-  { name: 'agent-jam', duration: 1000 * 5 },
-  { name: 'metorial', duration: 1000 * 5 },
+  { name: 'timer', duration: 1000 * 30 },
+  { name: 'agent-jam', duration: 1000 * 15 },
+  { name: 'metorial', duration: 1000 * 15 },
   { name: 'sponsors', duration: 1000 * sponsorDuration * sponsors.length }
 ];
 
@@ -178,11 +178,16 @@ export default () => {
   if (isBeforeStart) notice = `YC Agent Jam '25 is about to begin!`;
   if (isNearStart) notice = `Get ready for YC Agent Jam '25!`;
   if (scene == 'sponsors') notice = `Thank you to our sponsors and supporters!`;
-  if (lessThan1HourToEnd) notice = `Less than 1 hour remaining in YC Agent Jam '25!`;
-  if (lessThan30MinToEnd) notice = `Less than 30 minutes remaining in YC Agent Jam '25!`;
-  if (lessThan10MinToEnd) notice = `Less than 10 minutes remaining in YC Agent Jam '25!`;
-  if (lessThan5MinToEnd) notice = `Less than 5 minutes remaining in YC Agent Jam '25!`;
-  if (lessThan1MinToEnd) notice = `Less than 1 minute remaining in YC Agent Jam '25!`;
+  if (lessThan1HourToEnd)
+    notice = `Less than 1 hour remaining. Submit at ychackathon.com/submit`;
+  if (lessThan30MinToEnd)
+    notice = `Less than 30 minutes remaining. Submit at ychackathon.com/submit`;
+  if (lessThan10MinToEnd)
+    notice = `Less than 10 minutes remaining. Submit at ychackathon.com/submit`;
+  if (lessThan5MinToEnd)
+    notice = `Less than 5 minutes remaining. Submit at ychackathon.com/submit`;
+  if (lessThan1MinToEnd)
+    notice = `Less than 1 minute remaining. Submit at ychackathon.com/submit`;
   if (isOver) {
     if (scene == 'timer') {
       notice = null;
