@@ -268,7 +268,7 @@ export default () => {
           transition={{ duration: 0.8, ease: 'easeOut', delay: 1.2 }}
         >
           <div>
-            <ApplyButton href="/apply">Don't Miss Out - Apply Now</ApplyButton>
+            <ApplyButton>Applications Closed</ApplyButton>
           </div>
           <ApplyExtra>
             Limited spots available • <u>Guaranteed YC interview</u> for winner
@@ -382,9 +382,9 @@ export default () => {
           </p>
         </Box>
 
-        <div style={{ marginBottom: '80px' }}>
+        {/* <div style={{ marginBottom: '80px' }}>
           <ApplyButton href="/apply">Ready to Join? Apply Now</ApplyButton>
-        </div>
+        </div> */}
 
         <Footer />
 
@@ -397,14 +397,14 @@ export default () => {
           >
             Join our Discord
           </FloatingButton>
-          <FloatingButton
+          {/* <FloatingButton
             href="/apply"
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2, delay: 1 }}
           >
             🚀 Apply
-          </FloatingButton>
+          </FloatingButton> */}
         </FloatingButtons>
       </Page>
     </>
