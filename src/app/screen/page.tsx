@@ -156,9 +156,6 @@ let AnimatedNumber = ({ children }: { children: string }) => (
   </>
 );
 
-let start = new Date('2025-11-01T19:15:00Z');
-let end = new Date('2025-11-02T16:30:00Z');
-
 let useNow = () => {
   let [now, setNow] = useState(new Date());
 
@@ -196,6 +193,18 @@ let scenes = [
 
 export default () => {
   let now = useNow();
+
+  let [start, setStart] = useState(() => new Date('2025-11-01T19:15:00Z'));
+  let [end, setEnd] = useState(() => new Date('2025-11-02T16:30:00Z'));
+
+  useInterval(() => {
+    fetch('/config.json')
+      .then(res => res.json())
+      .then(data => {
+        if (data.start) setStart(new Date(data.start));
+        if (data.end) setEnd(new Date(data.end));
+      });
+  }, 1000 * 15);
 
   let diff = end.getTime() - now.getTime();
   let blink = useBlink(1200);
