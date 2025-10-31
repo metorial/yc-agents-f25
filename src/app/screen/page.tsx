@@ -100,7 +100,7 @@ let BigLogo = styled(motion.div)`
 let SponsorLogo = styled(motion.div)`
   img {
     width: 40vw;
-    height: 60vh;
+    height: 30vh;
     object-fit: contain;
     filter: brightness(0) invert(1);
   }
@@ -176,19 +176,21 @@ let useBlink = (interval: number) => {
   return on;
 };
 
-let multiplier = 4;
+let multiplier = 1000 * 5;
 let sponsorDuration = multiplier;
 
 let scenes = [
-  { name: 'timer', duration: 1000 * multiplier * 6 },
-  { name: 'agent-jam', duration: 1000 * multiplier * 3 },
-  { name: 'timer', duration: 1000 * multiplier * 2 },
-  { name: 'metorial', duration: 1000 * multiplier * 3 },
-  { name: 'metorial-twitter', duration: 1000 * multiplier * 3 },
-  { name: 'timer', duration: 1000 * multiplier * 2 },
-  { name: 'yc-thanks', duration: 1000 * multiplier * 3 },
-  { name: 'timer', duration: 1000 * multiplier * 2 },
-  { name: 'sponsors', duration: 1000 * sponsorDuration * sponsors.length }
+  { name: 'timer', duration: multiplier * 6 },
+  { name: 'agent-jam', duration: multiplier * 3 },
+  { name: 'timer', duration: multiplier * 2 },
+  { name: 'metorial', duration: multiplier * 3 },
+  { name: 'metorial-twitter', duration: multiplier * 3 },
+  { name: 'timer', duration: multiplier * 2 },
+  { name: 'vv', duration: multiplier, chance: 0.3 },
+  { name: 'timer', duration: multiplier * 2 },
+  { name: 'yc-thanks', duration: multiplier * 3 },
+  { name: 'timer', duration: multiplier * 2 },
+  { name: 'sponsors', duration: sponsorDuration * sponsors.length }
 ];
 
 export default () => {
@@ -266,6 +268,11 @@ export default () => {
 
     let nextIndex = (sceneIndex + 1) % scenes.length;
     let nextScene = scenes[nextIndex];
+
+    while (nextScene.chance && Math.random() > nextScene.chance) {
+      nextIndex = (nextIndex + 1) % scenes.length;
+      nextScene = scenes[nextIndex];
+    }
 
     if (isOver && nextScene.name == 'timer') {
       nextIndex = (nextIndex + 1) % scenes.length;
@@ -383,6 +390,12 @@ export default () => {
             <MediumText {...bigTextProps}>
               Follow @MetorialAI on Twitter for updates!
             </MediumText>
+          </BigContentScene>
+        )}
+
+        {scene == 'vv' && (
+          <BigContentScene key="metorial-twitter" {...sceneProps}>
+            <MediumText {...bigTextProps}>Follow @vvioletventures</MediumText>
           </BigContentScene>
         )}
 
