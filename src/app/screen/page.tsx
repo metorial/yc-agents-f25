@@ -69,7 +69,7 @@ let BigTimerText = styled(motion.div)`
 
   .part {
     display: inline-block;
-    width: 18rem;
+    width: 8rem;
     text-align: center;
   }
 `;
@@ -125,6 +125,30 @@ let TimerTop = styled(motion.div)`
   font-size: 2rem;
   font-weight: 500;
 `;
+
+let AnimatedDigit = ({ digit }: { digit: string }) => (
+  <AnimatePresence mode="popLayout">
+    <motion.span
+      key={digit}
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -20, opacity: 0 }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
+      style={{ display: 'inline-block' }}
+      className="part"
+    >
+      {digit}
+    </motion.span>
+  </AnimatePresence>
+);
+
+let AnimatedNumber = ({ children }: { children: string }) => (
+  <>
+    {children.split('').map((digit, i) => (
+      <AnimatedDigit key={`${i}-${digit}`} digit={digit} />
+    ))}
+  </>
+);
 
 let start = new Date('2025-11-01T19:15:00Z');
 let end = new Date('2025-11-02T16:30:00Z');
@@ -279,11 +303,11 @@ export default () => {
       <>
         <i>Starts in </i>
         <span>
-          <span className="part">{hours.toString().padStart(2, '0')}</span>
+          <AnimatedNumber>{hours.toString().padStart(2, '0')}</AnimatedNumber>
           <span style={{ opacity: blink ? 1 : 0, transition: 'all .2s' }}>:</span>
-          <span className="part">{minutes.toString().padStart(2, '0')}</span>
+          <AnimatedNumber>{minutes.toString().padStart(2, '0')}</AnimatedNumber>
           <span style={{ opacity: blink ? 1 : 0, transition: 'all .2s' }}>:</span>
-          <span className="part">{seconds.toString().padStart(2, '0')}</span>
+          <AnimatedNumber>{seconds.toString().padStart(2, '0')}</AnimatedNumber>
         </span>
       </>
     );
