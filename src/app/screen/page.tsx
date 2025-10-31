@@ -7,20 +7,21 @@ import styled from 'styled-components';
 import metorialLogo from '../../assets/metorial-full.svg';
 import { Page } from '../../components/page';
 
-import anthropicLogo from '../../assets/sponsors/anthropic.png';
+import anthropicLogo from '../../assets/sponsors/Anthropic_Logo_0.svg';
 import audrionLogo from '../../assets/sponsors/audrion.svg';
 import captainLogo from '../../assets/sponsors/captain.png';
-import covalLogo from '../../assets/sponsors/coval.png';
+import covalLogo from '../../assets/sponsors/coval.webp';
+import mantelLogo from '../../assets/sponsors/mantle.png';
 import morphllmLogo from '../../assets/sponsors/morphllm.svg';
 import naturalLogo from '../../assets/sponsors/natural.png';
 import nivaraLogo from '../../assets/sponsors/nivara.png';
-import openaiLogo from '../../assets/sponsors/openai.png';
+import openaiLogo from '../../assets/sponsors/OpenAI_Logo_0.svg';
 import puddleLogo from '../../assets/sponsors/puddle.png';
 import unsiloedLogo from '../../assets/sponsors/unsiloed.png';
 import vectusLogo from '../../assets/sponsors/vectus.png';
-import vercelLogo from '../../assets/sponsors/vercel.png';
+import vercelLogo from '../../assets/sponsors/Vercel_Logo_0.svg';
+import vvLogo from '../../assets/sponsors/vv.svg';
 import workloopaiLogo from '../../assets/sponsors/workloopai.png';
-import vvLogo from '../../assets/vv.png';
 
 let sponsors = [
   { name: 'Anthropic', logo: anthropicLogo },
@@ -36,7 +37,8 @@ let sponsors = [
   { name: 'Vectus', logo: vectusLogo },
   { name: 'Vercel', logo: vercelLogo },
   { name: 'Workloop AI', logo: workloopaiLogo },
-  { name: 'Violent Ventures', logo: vvLogo }
+  { name: 'Violent Ventures', logo: vvLogo },
+  { name: 'Mantle', logo: mantelLogo }
 ];
 
 let Scene = styled(motion.div)`
@@ -80,6 +82,14 @@ let BigText = styled(motion.div)`
   text-wrap: balance;
 `;
 
+let MediumText = styled(motion.div)`
+  font-size: 5rem;
+  font-weight: 600;
+  max-width: 80vw;
+  text-align: center;
+  text-wrap: balance;
+`;
+
 let BigLogo = styled(motion.div)`
   img {
     width: 50vw;
@@ -92,6 +102,7 @@ let SponsorLogo = styled(motion.div)`
     width: 40vw;
     height: 60vh;
     object-fit: contain;
+    filter: brightness(0) invert(1);
   }
 `;
 
@@ -138,12 +149,18 @@ let useBlink = (interval: number) => {
   return on;
 };
 
-let sponsorDuration = 4;
+let multiplier = 4;
+let sponsorDuration = multiplier;
 
 let scenes = [
-  { name: 'timer', duration: 1000 * 30 },
-  { name: 'agent-jam', duration: 1000 * 15 },
-  { name: 'metorial', duration: 1000 * 15 },
+  { name: 'timer', duration: 1000 * multiplier * 6 },
+  { name: 'agent-jam', duration: 1000 * multiplier * 3 },
+  { name: 'timer', duration: 1000 * multiplier * 2 },
+  { name: 'metorial', duration: 1000 * multiplier * 3 },
+  { name: 'metorial-twitter', duration: 1000 * multiplier * 3 },
+  { name: 'timer', duration: 1000 * multiplier * 2 },
+  { name: 'yc-thanks', duration: 1000 * multiplier * 3 },
+  { name: 'timer', duration: 1000 * multiplier * 2 },
   { name: 'sponsors', duration: 1000 * sponsorDuration * sponsors.length }
 ];
 
@@ -171,8 +188,9 @@ export default () => {
 
   let mustShowTimer = isNearStart || isNearEnd;
 
-  let [scene, setScene] = useState('timer');
-  if (mustShowTimer) scene = 'timer';
+  let [sceneIndex, setSceneIndex] = useState(0);
+  if (mustShowTimer) sceneIndex = 0;
+  let scene = scenes[sceneIndex].name;
 
   let notice: string | null = 'Organized by Metorial';
   if (isBeforeStart) notice = `YC Agent Jam '25 is about to begin!`;
@@ -201,10 +219,9 @@ export default () => {
   useEffect(() => {
     if (!scene) return;
 
-    let currentIndex = scenes.findIndex(s => s.name === scene);
-    let currentScene = scenes[currentIndex];
+    let currentScene = scenes[sceneIndex];
 
-    let nextIndex = (currentIndex + 1) % scenes.length;
+    let nextIndex = (sceneIndex + 1) % scenes.length;
     let nextScene = scenes[nextIndex];
 
     if (isOver && nextScene.name == 'timer') {
@@ -213,7 +230,7 @@ export default () => {
     }
 
     let timeout = setTimeout(() => {
-      setScene(nextScene.name as any);
+      setSceneIndex(nextIndex);
     }, currentScene.duration);
 
     return () => clearTimeout(timeout);
@@ -277,14 +294,15 @@ export default () => {
   useEffect(() => {
     if (scene !== 'sponsors') {
       setSponsorIndex(0);
-
       sponsors = sponsors.sort(() => Math.random() - 0.5);
-
       return;
     }
 
     let timeout = setTimeout(() => {
-      setSponsorIndex((sponsorIndex + 1) % sponsors.length);
+      let nextSponsorIndex = (sponsorIndex + 1) % sponsors.length;
+      if (nextSponsorIndex >= sponsors.length) return;
+
+      setSponsorIndex(nextSponsorIndex);
     }, sponsorDuration * 1000);
 
     return () => clearTimeout(timeout);
@@ -312,6 +330,20 @@ export default () => {
             <BigText {...bigTextProps}>
               {isBeforeStart ? `Welcome to YC Agent Jam '25` : `YC Agent Jam '25`}
             </BigText>
+          </BigContentScene>
+        )}
+
+        {scene == 'metorial-twitter' && (
+          <BigContentScene key="metorial-twitter" {...sceneProps}>
+            <MediumText {...bigTextProps}>
+              Follow @MetorialAI on Twitter for updates!
+            </MediumText>
+          </BigContentScene>
+        )}
+
+        {scene == 'yc-thanks' && (
+          <BigContentScene key="yc-thanks" {...sceneProps}>
+            <MediumText {...bigTextProps}>Thanks to Y Combinator for hosting us.</MediumText>
           </BigContentScene>
         )}
 
