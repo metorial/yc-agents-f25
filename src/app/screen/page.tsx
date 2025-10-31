@@ -124,6 +124,12 @@ let TimerTop = styled(motion.div)`
   text-align: center;
   font-size: 2rem;
   font-weight: 500;
+
+  .part {
+    display: inline-block;
+    width: 1.2rem;
+    text-align: center;
+  }
 `;
 
 let AnimatedDigit = ({ digit }: { digit: string }) => (
@@ -210,15 +216,19 @@ export default () => {
   let lessThan5MinToEnd = diff <= 1000 * 60 * 5;
   let lessThan1MinToEnd = diff <= 1000 * 60 * 1;
 
+  let started20SecOrLessAgo = !isBeforeStart && now.getTime() - start.getTime() <= 20000;
   let mustShowTimer = isNearStart || isNearEnd;
 
   let [sceneIndex, setSceneIndex] = useState(0);
   if (mustShowTimer) sceneIndex = 0;
+  if (started20SecOrLessAgo) sceneIndex = scenes.findIndex(s => s.name == 'agent-jam');
+
   let scene = scenes[sceneIndex].name;
 
-  let notice: string | null = 'Organized by Metorial';
+  let notice: string | null = null;
+  if (!scene.includes('metorial')) notice = 'Organized by Metorial';
   if (isBeforeStart) notice = `YC Agent Jam '25 is about to begin!`;
-  if (isNearStart) notice = `Get ready for YC Agent Jam '25!`;
+  if (isNearStart && isBeforeStart) notice = `Get ready for YC Agent Jam '25!`;
   if (scene == 'sponsors') notice = `Thank you to our sponsors and supporters!`;
   if (lessThan1HourToEnd)
     notice = `Less than 1 hour remaining. Submit at ychackathon.com/submit`;
@@ -281,11 +291,11 @@ export default () => {
   let timerKey = 'normal-timer';
   let timer = (
     <span>
-      <span className="part">{hours.toString().padStart(2, '0')}</span>
+      <AnimatedNumber>{hours.toString().padStart(2, '0')}</AnimatedNumber>
       <span style={{ opacity: blink ? 1 : 0, transition: 'all .2s' }}>:</span>
-      <span className="part">{minutes.toString().padStart(2, '0')}</span>
+      <AnimatedNumber>{minutes.toString().padStart(2, '0')}</AnimatedNumber>
       <span style={{ opacity: blink ? 1 : 0, transition: 'all .2s' }}>:</span>
-      <span className="part">{seconds.toString().padStart(2, '0')}</span>
+      <AnimatedNumber>{seconds.toString().padStart(2, '0')}</AnimatedNumber>
     </span>
   );
 
@@ -352,7 +362,9 @@ export default () => {
         {scene == 'agent-jam' && (
           <BigContentScene key="agent-jam" {...sceneProps}>
             <BigText {...bigTextProps}>
-              {isBeforeStart ? `Welcome to YC Agent Jam '25` : `YC Agent Jam '25`}
+              {isBeforeStart || isNearStart
+                ? `Welcome to YC Agent Jam '25`
+                : `YC Agent Jam '25`}
             </BigText>
           </BigContentScene>
         )}
