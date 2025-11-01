@@ -2,7 +2,7 @@
 
 import { useInterval } from '@looped/hooks';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import metorialLogo from '../../assets/metorial-full.svg';
 import { Page } from '../../components/page';
@@ -186,8 +186,6 @@ let scenes = [
   { name: 'metorial', duration: multiplier * 3 },
   { name: 'metorial-twitter', duration: multiplier * 3 },
   { name: 'timer', duration: multiplier * 2 },
-  { name: 'vv', duration: multiplier, chance: 0.3 },
-  { name: 'timer', duration: multiplier * 2 },
   { name: 'yc-thanks', duration: multiplier * 3 },
   { name: 'timer', duration: multiplier * 2 },
   { name: 'sponsors', duration: sponsorDuration * sponsors.length }
@@ -196,17 +194,20 @@ let scenes = [
 export default () => {
   let now = useNow();
 
-  let [start, setStart] = useState(() => new Date('2025-11-01T19:15:00Z'));
-  let [end, setEnd] = useState(() => new Date('2025-11-02T16:30:00Z'));
+  let [start, setStart] = useState(() => new Date());
+  let [end, setEnd] = useState(() => new Date());
 
-  useInterval(() => {
+  let fetchTime = useCallback(() => {
     fetch('/config.json')
       .then(res => res.json())
       .then(data => {
         if (data.start) setStart(new Date(data.start));
         if (data.end) setEnd(new Date(data.end));
       });
-  }, 1000 * 15);
+  }, []);
+
+  useEffect(() => fetchTime(), [fetchTime]);
+  useInterval(fetchTime, 1000 * 15);
 
   let diff = end.getTime() - now.getTime();
   let blink = useBlink(1200);
@@ -214,12 +215,12 @@ export default () => {
   let isOver = diff <= 0;
   let isBeforeStart = now.getTime() < start.getTime();
 
-  let timerOffset = 1000 * 60 * 5;
-
   let currentTime = now.getTime();
 
-  let isNearStart = Math.abs(currentTime - start.getTime()) <= timerOffset;
-  let isNearEnd = Math.abs(currentTime - end.getTime()) <= timerOffset;
+  let isNearStart = Math.abs(currentTime - start.getTime()) <= 1000 * 60 * 5;
+  let isNearEnd =
+    (!isOver && Math.abs(currentTime - end.getTime()) <= 1000 * 60 * 5) ||
+    (isOver && Math.abs(currentTime - end.getTime()) <= 1000 * 60);
 
   let lessThan1HourToEnd = diff <= 1000 * 60 * 60;
   let lessThan30MinToEnd = diff <= 1000 * 60 * 30;
@@ -236,8 +237,16 @@ export default () => {
 
   let scene = scenes[sceneIndex].name;
 
-  let notice: string | null = null;
-  if (!scene.includes('metorial')) notice = 'Organized by Metorial';
+  let [bottomIndex, setBottomIndex] = useState(0);
+  useInterval(() => {
+    setBottomIndex((bottomIndex + 1) % 10);
+  }, 1000 * 9);
+  let notice: string | null = 'Organized by Metorial';
+  if (bottomIndex == 0) notice = 'Thanks to @vvioletventures for their help!';
+  if (bottomIndex > 5) notice = 'Follow @MetorialAI on Twitter for updates!';
+  if (bottomIndex >= 9) notice = 'Thanks to Y Combinator for hosting us.';
+  if (scene.includes('metorial')) notice = null;
+
   if (isBeforeStart) notice = `YC Agent Jam '25 is about to begin!`;
   if (isNearStart && isBeforeStart) notice = `Get ready for YC Agent Jam '25!`;
   if (scene == 'sponsors') notice = `Thank you to our sponsors and supporters!`;
@@ -268,11 +277,6 @@ export default () => {
 
     let nextIndex = (sceneIndex + 1) % scenes.length;
     let nextScene = scenes[nextIndex];
-
-    while (nextScene.chance && Math.random() > nextScene.chance) {
-      nextIndex = (nextIndex + 1) % scenes.length;
-      nextScene = scenes[nextIndex];
-    }
 
     if (isOver && nextScene.name == 'timer') {
       nextIndex = (nextIndex + 1) % scenes.length;
@@ -317,7 +321,7 @@ export default () => {
 
   if (isOver) {
     timerKey = 'over-timer';
-    timer = <i>YC Agent Jam '25 has ended.</i>;
+    timer = <i style={{ fontSize: '5rem' }}>YC Agent Jam '25 has ended.</i>;
   } else if (isBeforeStart) {
     timerKey = 'start-timer';
 
@@ -353,7 +357,7 @@ export default () => {
       if (nextSponsorIndex >= sponsors.length) return;
 
       setSponsorIndex(nextSponsorIndex);
-    }, sponsorDuration * 1000);
+    }, sponsorDuration);
 
     return () => clearTimeout(timeout);
   }, [scene, sponsorIndex]);
@@ -388,14 +392,8 @@ export default () => {
         {scene == 'metorial-twitter' && (
           <BigContentScene key="metorial-twitter" {...sceneProps}>
             <MediumText {...bigTextProps}>
-              Follow @MetorialAI on Twitter for updates!
+              Follow @MetorialAI on Twitter/X for updates!
             </MediumText>
-          </BigContentScene>
-        )}
-
-        {scene == 'vv' && (
-          <BigContentScene key="metorial-twitter" {...sceneProps}>
-            <MediumText {...bigTextProps}>Follow @vvioletventures</MediumText>
           </BigContentScene>
         )}
 
