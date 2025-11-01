@@ -239,13 +239,14 @@ export default () => {
 
   let [bottomIndex, setBottomIndex] = useState(0);
   useInterval(() => {
-    setBottomIndex((bottomIndex + 1) % 15);
+    setBottomIndex((bottomIndex + 1) % 20);
   }, 1000 * 9);
   let notice: string | null = 'Organized by Metorial';
   if (bottomIndex == 0) notice = 'Thanks to @vvioletventures for their help!';
   if (bottomIndex > 5) notice = 'Follow @MetorialAI on Twitter for updates!';
   if (bottomIndex > 9) notice = 'Thanks to Y Combinator for hosting us.';
   if (bottomIndex > 12) notice = 'Join the YC Agent Jam Discord at ychackathon.com/discord';
+  if (bottomIndex > 15) notice = 'Star github.com/metorial/metorial right now!';
   if (scene.includes('metorial')) notice = null;
 
   if (isBeforeStart) notice = `YC Agent Jam '25 is about to begin!`;
