@@ -15,6 +15,8 @@ import puddleLogo from '../assets/sponsors/puddle.png';
 import unsiloedLogo from '../assets/sponsors/unsiloed.png';
 import vectusLogo from '../assets/sponsors/vectus.png';
 import vercelLogo from '../assets/sponsors/vercel.png';
+import bearLogo from '../assets/sponsors/bear.png';
+import ripplingLogo from '../assets/sponsors/rippling.svg';
 import workloopaiLogo from '../assets/sponsors/workloopai.png';
 import vvLogo from '../assets/vv.png';
 import ycLogo from '../assets/yc-full.svg';
@@ -306,6 +308,7 @@ export default () => {
           <img src={openaiLogo.src} alt="OpenAI" className="openai-logo" />
           <img src={vercelLogo.src} alt="Vercel" className="vercel-logo" />
           <img src={anthropicLogo.src} alt="Anthropic" />
+          <img src={ripplingLogo.src} alt="Rippling" />
           <img src={captainLogo.src} alt="Captain" />
           <img src={morphllmLogo.src} alt="MorphLLM" className="morphllm-logo" />
           <img src={workloopaiLogo.src} alt="Workloop AI" />
@@ -316,6 +319,7 @@ export default () => {
           <img src={puddleLogo.src} alt="Puddle" className="puddle-logo" />
           <img src="/assets/sponsors/mantle.png" alt="Mantle" className="mantle-logo" />
           <img src={vectusLogo.src} alt="Vectus" className="vectus-logo" />
+          <img src={bearLogo.src} alt="Bear" className="bear-logo" />
         </Logos>
 
         <Box title="About the Event" delay={1.8}>
