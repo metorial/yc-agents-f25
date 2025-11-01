@@ -10,7 +10,7 @@ export let GET = async (req: NextRequest) => {
   let code = url.searchParams.get('code');
   if (!code) {
     console.error('No code in callback');
-    return NextResponse.redirect(`${req.nextUrl.origin}/apply`);
+    return NextResponse.redirect(`${req.nextUrl.origin}/submit`);
   }
 
   let tokenRes = await fetch('https://auth-api.metorial.com/handoff/token', {
@@ -22,20 +22,20 @@ export let GET = async (req: NextRequest) => {
       client_id: process.env.OAUTH_CLIENT_ID!,
       client_secret: process.env.OAUTH_CLIENT_SECRET!,
       code,
-      redirect_uri: `${req.nextUrl.origin}/apply/callback`,
+      redirect_uri: `${req.nextUrl.origin}/submit/callback`,
       grant_type: 'authorization_code'
     })
   });
   if (!tokenRes.ok) {
     console.error('Failed to fetch token', await tokenRes.text());
-    return NextResponse.redirect(`${req.nextUrl.origin}/apply`);
+    return NextResponse.redirect(`${req.nextUrl.origin}/submit`);
   }
 
   let tokenData = await tokenRes.json();
   let accessToken = tokenData.access_token;
   if (!accessToken) {
     console.error('No access token in response', tokenData);
-    return NextResponse.redirect(`${req.nextUrl.origin}/apply`);
+    return NextResponse.redirect(`${req.nextUrl.origin}/submit`);
   }
 
   let userRes = await fetch('https://auth-api.metorial.com/handoff/userinfo', {
@@ -45,7 +45,7 @@ export let GET = async (req: NextRequest) => {
   });
   if (!userRes.ok) {
     console.error('Failed to fetch user info', await userRes.text());
-    return NextResponse.redirect(`${req.nextUrl.origin}/apply`);
+    return NextResponse.redirect(`${req.nextUrl.origin}/submit`);
   }
 
   let userData = await userRes.json();
