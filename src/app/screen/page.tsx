@@ -371,12 +371,24 @@ export default () => {
     return () => clearTimeout(timeout);
   }, [scene, sponsorIndex]);
 
+  if (lessThan30MinToEnd && !isOver && scene != 'timer' && scene != 'metorial') {
+    scene = 'submit';
+  }
+
   return (
     <Page>
       <AnimatePresence mode="wait">
         {scene == 'timer' && (
           <BigContentScene key={`timer-${timerKey}`} {...sceneProps}>
             <BigTimerText {...bigTextProps}>{timer}</BigTimerText>
+          </BigContentScene>
+        )}
+
+        {scene == 'submit' && (
+          <BigContentScene key="submit" {...sceneProps}>
+            <BigText {...bigTextProps} style={{ fontSize: '5em' }}>
+              Submit your project at ychackathon.com/submit
+            </BigText>
           </BigContentScene>
         )}
 
