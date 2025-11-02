@@ -191,6 +191,8 @@ let scenes = [
   { name: 'sponsors', duration: sponsorDuration * sponsors.length }
 ];
 
+let loadedAt = new Date();
+
 export default () => {
   let now = useNow();
 
@@ -230,6 +232,11 @@ export default () => {
 
   let started20SecOrLessAgo = !isBeforeStart && now.getTime() - start.getTime() <= 20000;
   let mustShowTimer = isNearStart || isNearEnd;
+
+  useInterval(() => {
+    let timeSinceLoad = new Date().getTime() - loadedAt.getTime();
+    if (timeSinceLoad >= 1000 * 60 * 30 && !mustShowTimer) location.reload();
+  }, 30 * 1000);
 
   let [sceneIndex, setSceneIndex] = useState(0);
   if (mustShowTimer) sceneIndex = 0;
